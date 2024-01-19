@@ -28,6 +28,13 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
+	FORCEINLINE int GetNbCheckPointPassed() const { return nbCheckPointPassed; }
+	FORCEINLINE int GetNbMaxCheckPoint() const { return MaxCheckPoint; }
+	FORCEINLINE void SetNbCheckPointPassed(int value) { nbCheckPointPassed = value; }
+
+	UFUNCTION()
+	void EndGame();
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -44,6 +51,11 @@ protected:
 	void Move(const FInputActionValue& Value);
 	void Look(const FInputActionValue& Value);
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = CheckPoint)
+	int nbCheckPointPassed = 0;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = CheckPoint)
+	int MaxCheckPoint = 10;
 
 private:
 	// FORWARD DECLARATION

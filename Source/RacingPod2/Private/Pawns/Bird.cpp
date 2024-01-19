@@ -35,6 +35,14 @@ ABird::ABird()
 	BirdMesh->SetupAttachment(GetRootComponent());
 }
 
+void ABird::EndGame()
+{
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(-1, 3.f, FColor::Cyan, TEXT("ENDGAME"));
+	}
+}
+
 // Called when the game starts or when spawned
 void ABird::BeginPlay()
 {
